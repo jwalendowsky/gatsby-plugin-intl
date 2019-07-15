@@ -7,7 +7,9 @@ const Link = ({ to, language, children, onClick, ...rest }) => (
   <IntlContextConsumer>
     {intl => {
       const languageLink = language || intl.language
-      const link = intl.routed || language ? `/${languageLink}${to}` : `${to}`
+      const messages = intl.messages || {}
+      const path = messages[`routes.${to}`] || to
+      const link = intl.routed || language ? `/${languageLink}${path}` : `${path}`
 
       const handleClick = e => {
         if (language) {
