@@ -84,7 +84,7 @@ exports.onCreatePage = async ({ page, actions }, pluginOptions) => {
   deletePage(page)
   createPage(newPage)
 
-  languages.forEach(language => {
+  languages.filter(language => !(page.context.language) || language == page.context.language).forEach(language => {
     const localePage = generatePage(true, language)
     createPage(localePage)
   })
