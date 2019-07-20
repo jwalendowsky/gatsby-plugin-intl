@@ -58,8 +58,8 @@ exports.onCreatePage = async ({ page, actions }, pluginOptions) => {
 
   const generatePage = (routed, language) => {
     const messages = getMessages(path, language)
-    const path = messages[`routes.${page.path}`] || page.path
-    const newPath = routed ? `/${language}${path}` : path
+    const pagePath = messages[`routes.${page.path}`] || page.path
+    const newPath = routed ? `/${language}${pagePath}` : pagePath
     allSitePage.push(newPath)
     return {
       ...page,
